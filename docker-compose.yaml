@@ -1,0 +1,15 @@
+version: '3.8'  # It's good to specify the version at the top.
+
+services:
+  azmari_bot:
+    build:
+      context: .  # Path to the directory to use as the build context.
+      dockerfile: Dockerfile  # Specify the Dockerfile (if it's not named Dockerfile).
+    container_name: azmari_bot  # Container name for easier reference.
+    environment:
+      - TELEGRAM_API_KEY=${TOKEN}  # Reference environment variable from the .env file.
+    volumes:
+      - .:/app  # Mount the current directory into /app in the container.
+    restart: always  # Restart policy (can also be on-failure depending on your needs).
+    ports:
+      - "5000:5000"  # If your bot listens on a port, expose it here (optional).
